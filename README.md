@@ -1,10 +1,10 @@
 # website-status-checker
 
-### :memo: Problem Statement:
+### :memo: &nbsp; Problem Statement:
 
 To build a service that checks the status of websites continuously and expose APIs to add websites and retrieve statuses.
 
-### :gear: Sample cURL commands for the APIs:
+### :gear: &nbsp; Sample cURL commands for the APIs:
 
 #### /add-websites (POST)
 

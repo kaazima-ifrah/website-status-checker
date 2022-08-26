@@ -8,6 +8,7 @@ import (
 	"log"
 	"net/http"
 	"net/http/httptest"
+	"strings"
 	"testing"
 	"time"
 )
@@ -18,6 +19,11 @@ func TestViewWebsitesHandler(t *testing.T) {
 	w := httptest.NewRecorder()
 	ViewWebsitesStatusHandler(w, req)
 	res := w.Result()
+	if res.StatusCode != 200 {
+		log.Fatal("Test Failed")
+		return
+	}
+
 	defer func(Body io.ReadCloser) {
 		err := Body.Close()
 		if err != nil {
@@ -28,6 +34,18 @@ func TestViewWebsitesHandler(t *testing.T) {
 	expected := "{\"https://www.airbnb.com\":\"UP\",\"https://www.amazon.com\":\"UP\",\"https://www.google.com\":\"UP\"}"
 	log.Printf("Expected:\t%v", expected)
 	log.Printf("Output:\t\t%v", string(data))
+}
+
+func TestAddWebsitesHandler(t *testing.T) {
+	reader := strings.NewReader("[{\"Url\":\"https://www.google.com\"}]")
+	req := httptest.NewRequest(http.MethodPost, "/add-websites", reader)
+	w := httptest.NewRecorder()
+	AddWebsitesHandler(w, req)
+	res := w.Result()
+	if res.StatusCode != 200 {
+		log.Fatal("Test Failed")
+		return
+	}
 }
 
 func Initialize() {

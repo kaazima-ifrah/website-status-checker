@@ -27,7 +27,7 @@ func StatusCheckerGoRoutine() {
 			}(website)
 		}
 		wg.Wait()
-		log.Println("Finished checking status of all websites, will recheck after a minute...")
+		log.Println("Finished checking status of all websites, will recheck after a second...")
 		time.Sleep(1 * time.Second)
 	}
 }

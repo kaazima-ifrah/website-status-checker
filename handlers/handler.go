@@ -24,7 +24,7 @@ func AddWebsitesHandler(w http.ResponseWriter, r *http.Request) {
 		w.WriteHeader(http.StatusInternalServerError)
 	}
 
-	// Initialize each website's status
+	// Add websites to db & Initialize each website's status
 	for _, website := range websites {
 		database.WebsiteData[website.Url] = "DOWN"
 	}
